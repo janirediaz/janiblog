@@ -3,7 +3,6 @@ package janiblog
 class AdminController {
 
     def index() {
-
     }
 
     def saveUser(){
@@ -13,20 +12,26 @@ class AdminController {
         u.edad = Integer.parseInt(params.edad);
         u.user = params.user;
         u.password = params.password;
-        if(!u.save(flush:true)){
-         println u.errors.allErrors.join('\n');
+        if(user == null){
+            redirect(controller: 'admin', action: 'login');
         }
-        redirect(controller:'admin', action:'lista');
+
     }
 
     def lista(){
         User u = new User();
         def listaUsuarios = u.findAll();
+        if(user == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         [listaUsuarios:listaUsuarios];
     }
 
     def delete(){
         User u = User.get(params.id);
+        if(user == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         u.delete(flush:true);
         redirect(controller:'admin',action:'lista');
 
@@ -34,6 +39,9 @@ class AdminController {
 
     def getUser(){
         def user = User.get(params.id);
+        if(user == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         [user : user];
     }
 
@@ -42,6 +50,9 @@ class AdminController {
         user.nombre = params.nombre;
         user.apellido = params.apellido;
         user.edad = Integer.parseInt(params.edad);
+        if(user == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         user.save(flush:true);
         redirect(controller:'admin', action:'lista');
     }
@@ -57,7 +68,15 @@ class AdminController {
     }
 
     def login(){
+        render(view: 'login');
+    }
 
+    def addPost(){
+        render(view:'addPost');
+    }
+
+    def newPost(){
+        render(view:'newPost');
     }
 
 }

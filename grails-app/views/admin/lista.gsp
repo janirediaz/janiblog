@@ -11,7 +11,9 @@
     <a href="http://localhost:8080/admin/getUser?id=${usuario.id}">Detalle de Usuario</a>
 </g:each>
 
-<br><a href="http://localhost:8080/admin">Index</a></br>
+<input type="submit" value="Agregar User">
+
+<br><a href="http://localhost:8080/admin/index">Index</a></br>
 
 
 </body>
