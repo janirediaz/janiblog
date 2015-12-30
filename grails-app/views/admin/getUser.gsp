@@ -4,7 +4,7 @@
     <title>Formulario de modificacion de datos</title>
 </head>
 <h3>Formulario de modificacion</h3>
-<form action="http://localhost:8080/user/updateUser" method="get">
+<form action="http://localhost:8080/admin/updateUser" method="get">
     Nombre:<br><input type="text" name="nombre" value="${user.nombre}"></br>
     Apellido:<br><input type="text" name="apellido" value="${user.apellido}"></br>
     Edad:<br><input type="text" name="edad" value="${user.edad}"></br>

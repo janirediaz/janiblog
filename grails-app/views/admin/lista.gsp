@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<br>
 <head>
     <title>Lista Usuarios</title>
 </head>
@@ -11,8 +11,8 @@
     <a href="http://localhost:8080/admin/getUser?id=${usuario.id}">Detalle de Usuario</a>
 </g:each>
 
-<input type="submit" value="Agregar User">
 
+<br><a href="http://localhost:8080/admin/index">Agregar nuevo usuario</a></br>
 <br><a href="http://localhost:8080/admin/index">Index</a></br>
 
 

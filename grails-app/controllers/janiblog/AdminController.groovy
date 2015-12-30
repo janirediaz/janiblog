@@ -12,26 +12,21 @@ class AdminController {
         u.edad = Integer.parseInt(params.edad);
         u.user = params.user;
         u.password = params.password;
-        if(user == null){
+        if(user == null) {
             redirect(controller: 'admin', action: 'login');
         }
-
+        u.save(flush: true);
+        redirect(controller: 'admin', action: 'lista');
     }
 
     def lista(){
         User u = new User();
         def listaUsuarios = u.findAll();
-        if(user == null){
-            redirect(controller: 'admin', action: 'login');
-        }
         [listaUsuarios:listaUsuarios];
     }
 
     def delete(){
         User u = User.get(params.id);
-        if(user == null){
-            redirect(controller: 'admin', action: 'login');
-        }
         u.delete(flush:true);
         redirect(controller:'admin',action:'lista');
 
@@ -39,9 +34,6 @@ class AdminController {
 
     def getUser(){
         def user = User.get(params.id);
-        if(user == null){
-            redirect(controller: 'admin', action: 'login');
-        }
         [user : user];
     }
 
@@ -50,9 +42,6 @@ class AdminController {
         user.nombre = params.nombre;
         user.apellido = params.apellido;
         user.edad = Integer.parseInt(params.edad);
-        if(user == null){
-            redirect(controller: 'admin', action: 'login');
-        }
         user.save(flush:true);
         redirect(controller:'admin', action:'lista');
     }
@@ -61,7 +50,7 @@ class AdminController {
         def user = User.findByNombre(params.user);
         if(user != null && params.user.equalsIgnorecase(user.user) && params.password.equalsIgnorecase(user.password)){
             session['user'] = user;
-            redirect(controller: 'admin', action:'lista');
+            redirect(controller: 'admin', action:'newPost');
         }else{
             redirect(controller: 'admin', action: 'login');
         }
@@ -72,11 +61,11 @@ class AdminController {
     }
 
     def addPost(){
-        render(view:'addPost');
+
     }
 
     def newPost(){
-        render(view:'newPost');
+
     }
 
 }
