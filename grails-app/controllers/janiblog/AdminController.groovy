@@ -6,17 +6,18 @@ class AdminController {
     }
 
     def saveUser(){
-        User u = new User();
-        u.nombre = params.nombre;
-        u.apellido = params.apellido;
-        u.edad = Integer.parseInt(params.edad);
-        u.user = params.user;
-        u.password = params.password;
-        if(user == null) {
+        if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
+        }else{
+            User u = new User();
+            u.nombre = params.nombre;
+            u.apellido = params.apellido;
+            u.edad = Integer.parseInt(params.edad);
+            u.user = params.user;
+            u.password = params.password;
+            u.save(flush: true);
+            redirect(controller: 'admin', action: 'lista');
         }
-        u.save(flush: true);
-        redirect(controller: 'admin', action: 'lista');
     }
 
     def lista(){
@@ -27,7 +28,11 @@ class AdminController {
 
     def delete(){
         User u = User.get(params.id);
-        u.delete(flush:true);
+        if(!u.delete(flush:true)){
+            println u.errors.allErrors.join('\n');
+            flash.message = "Error al updatear el usuario";
+        }
+
         redirect(controller:'admin',action:'lista');
 
     }
@@ -42,15 +47,20 @@ class AdminController {
         user.nombre = params.nombre;
         user.apellido = params.apellido;
         user.edad = Integer.parseInt(params.edad);
-        user.save(flush:true);
+        if(!user.save(flush:true)){
+            println user.errors.allErrors.join('\n');
+
+        }
+
         redirect(controller:'admin', action:'lista');
     }
 
     def doLogin(){
-        def user = User.findByNombre(params.user);
-        if(user != null && params.user.equalsIgnorecase(user.user) && params.password.equalsIgnorecase(user.password)){
+        def user = User.findByUser(params.user);
+        println params.user + 'user';
+        if(user != null && params.user.equalsIgnoreCase(user.user) && params.password.equalsIgnoreCase(user.password)){
             session['user'] = user;
-            redirect(controller: 'admin', action:'newPost');
+            redirect(controller: 'admin', action:'dashBoard');
         }else{
             redirect(controller: 'admin', action: 'login');
         }
@@ -60,12 +70,27 @@ class AdminController {
         render(view: 'login');
     }
 
-    def addPost(){
 
-    }
 
     def newPost(){
 
+    }
+
+    def dashBoard(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
+    }
+
+    def savePost(){
+        println params;
+        Post p = new Post();
+        p.titulo = params.titulo;
+        p.descripcion = params.descripcion;
+        if(!p.save(flush:true)){
+            println p.errors.allErrors.join('\n');
+        }
+        redirect(controller: 'admin', action: 'dashBoard');
     }
 
 }

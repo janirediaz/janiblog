@@ -5,16 +5,16 @@
 </head>
 
 <h3>Agregar nuevo post</h3>
-<form action="http://localhost:8080/admin/addPost" method="get">
+<form action="http://localhost:8080/admin/savePost" method="get">
     Título del post:<br><input type="text" name="titulo"></br>
-    Contenido:<br><textarea cols="20" rows="10" name="contenido">Agrega aquí el contenido de tu post</textarea>
+    Contenido:<br><textarea cols="20" rows="10" name="descripcion">Agrega aquí el contenido de tu post</textarea>
 
 
 
     <input type="submit" value="Enviar">
 
 </form>
-<a href="http://localhost:8080/admin/addPost"></a>
+<a href="http://localhost:8080/admin/dashBoard"></a>
 
 
 
