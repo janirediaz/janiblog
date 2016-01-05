@@ -14,7 +14,7 @@ ${flash.message}
 
 
 <br><a href="http://localhost:8080/admin/index">Agregar nuevo usuario</a></br>
-<br><a href="http://localhost:8080/admin/index">Index</a></br>
+<br><a href="http://localhost:8080/admin/dashBoard">Index</a></br>
 
 
 </body>

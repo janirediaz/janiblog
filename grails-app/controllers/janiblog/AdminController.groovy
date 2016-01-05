@@ -3,9 +3,13 @@ package janiblog
 class AdminController {
 
     def index() {
+        if(session['user'] == null){
+            redirect(controller: 'admin', action:'login');
+        }
     }
 
     def saveUser(){
+
         if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
         }else{
@@ -15,18 +19,28 @@ class AdminController {
             u.edad = Integer.parseInt(params.edad);
             u.user = params.user;
             u.password = params.password;
-            u.save(flush: true);
-            redirect(controller: 'admin', action: 'lista');
+            if(!u.save(flush: true)){
+                println u.errors.allErrors.join('\n');
+                flash.message = "Error al salvar el usuario";
+            }
+                redirect(controller: 'admin', action: 'lista');
         }
+
     }
 
     def lista(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         User u = new User();
         def listaUsuarios = u.findAll();
         [listaUsuarios:listaUsuarios];
     }
 
     def delete(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         User u = User.get(params.id);
         if(!u.delete(flush:true)){
             println u.errors.allErrors.join('\n');
@@ -38,11 +52,17 @@ class AdminController {
     }
 
     def getUser(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         def user = User.get(params.id);
         [user : user];
     }
 
     def updateUser(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
         def user = User.get(params.id);
         user.nombre = params.nombre;
         user.apellido = params.apellido;
@@ -57,7 +77,6 @@ class AdminController {
 
     def doLogin(){
         def user = User.findByUser(params.user);
-        println params.user + 'user';
         if(user != null && params.user.equalsIgnoreCase(user.user) && params.password.equalsIgnoreCase(user.password)){
             session['user'] = user;
             redirect(controller: 'admin', action:'dashBoard');
