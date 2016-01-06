@@ -8,5 +8,14 @@ class VisitorController {
         [listaPost : listaPost];
     }
 
+    def detallePost(){
+        Post p = Post.get(params.id);
+        [p : p];
+    }
+
+    def saveComment(){
+
+    }
+
 
 }
