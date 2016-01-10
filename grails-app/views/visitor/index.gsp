@@ -11,5 +11,11 @@
 
 </g:each>
 
+<a href="http://localhost:8080/visitor/index?pagina=1">pagina 1</a>
+<a href="http://localhost:8080/visitor/index?pagina=2">pagina 2</a>
+<a href="http://localhost:8080/visitor/index?pagina=3">pagina 3</a>
+<a href="http://localhost:8080/visitor/index?pagina=4">pagina 4</a>
+<a href="http://localhost:8080/visitor/index?pagina=5">pagina 5</a>
+
 </body>
 </html>
