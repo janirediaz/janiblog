@@ -5,6 +5,7 @@
 </head>
 
 <br>
+${flash.message}
 <g:each in="${listaUsuarios}" var="usuario">
     <p>Usuario: ${usuario.nombre} ${usuario.apellido} Edad: ${usuario.edad}</p>
     <a href="http://localhost:8080/admin/delete?id=${usuario.id}">Borrar usuario</a>
@@ -13,7 +14,7 @@
 
 
 <br><a href="http://localhost:8080/admin/index">Agregar nuevo usuario</a></br>
-<br><a href="http://localhost:8080/admin/index">Index</a></br>
+<br><a href="http://localhost:8080/admin/dashBoard">Index</a></br>
 
 
 </body>

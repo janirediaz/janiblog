@@ -17,7 +17,7 @@
 
 </form>
 <a href="http://localhost:8080/admin/lista">Lista Usuarios</a>
-<a href="http://localhost:8080/admin/login">Login</a>
+
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>

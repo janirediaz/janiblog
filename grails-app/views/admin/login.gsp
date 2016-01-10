@@ -7,7 +7,7 @@
 <body>
 <h3>Formulario del login</h3>
 
-<form action="http://localhost:8080/admin/addPost" method="get">
+<form action="http://localhost:8080/admin/doLogin" method="get">
     Usuario:<br><input type="text" name="user"></br>
     Password:<br><input type="text" name="password"></br>
 
