@@ -92,7 +92,9 @@ class AdminController {
 
 
     def newPost(){
-
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
     }
 
     def dashBoard(){
