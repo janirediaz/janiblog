@@ -3,10 +3,16 @@ package janiblog
 class VisitorController {
 
     def index() {
-       Post p = new Post();
-        def listaPost = p.findAll();
+        def pagina = 0;
+        if(params.pagina == null){
+            pagina = 1;
+        }else{
+            pagina = Integer.parseInt(params.pagina);
+        }
+        def listaPost = Post.findAll([max: 5, offset: (pagina -1) * 5]);
         [listaPost : listaPost];
     }
+
 
     def detallePost(){
         Post p = Post.get(params.id);
