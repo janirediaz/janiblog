@@ -3,8 +3,13 @@ package janiblog
 class VisitorController {
 
     def index() {
-       Post p = new Post();
-        def listaPost = p.findAll();
+        def pagina = 0;
+        if(params.pagina == null){
+            pagina = 1;
+        }else{
+            pagina = Integer.parseInt(params.pagina);
+        }
+        def listaPost = Post.findAll([max: 5, offset: (pagina -1) * 5]);
         [listaPost : listaPost];
     }
 
@@ -14,6 +19,14 @@ class VisitorController {
     }
 
     def saveComment(){
+        Post p = Post.get(params.id);
+        Comment c = new Comment();
+        c.contenido = params.descripcion;
+        p.addToComentarios(c);
+        if(!p.save(flush:true)){
+            println(p.errors.allErrors.join('\n'));
+        }
+        redirect(controller: 'visitor', action: 'detallePost', params: [id: params.id]);
 
     }
 
