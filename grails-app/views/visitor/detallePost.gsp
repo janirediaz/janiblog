@@ -9,7 +9,9 @@
 ${p.titulo}<br/>
 ${p.descripcion}<br/>
 <g:each in="${p.comentarios}" var="comment">
-    ${comment.contenido}<br/>
+    <g:if test="${!comment.moderated}">
+        ${comment.contenido}<br/>
+    </g:if>
 </g:each>
 
 <h3>Deja aquí algún comentario</h3>
