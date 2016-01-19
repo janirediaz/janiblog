@@ -111,7 +111,19 @@ class AdminController {
         if(!p.save(flush:true)){
             println p.errors.allErrors.join('\n');
         }
-        redirect(controller: 'admin', action: 'dashBoard');
+        redirect(controller: 'visitor', action: 'index');
     }
+
+    def demoderateList(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
+        def comment = Comment.findByModerated(true);
+        if(comment.moderated(flush: true)){
+            println comment.errors.allErrors.join('\n');
+        }
+
+    }
+
 
 }

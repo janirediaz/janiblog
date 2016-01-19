@@ -20,5 +20,6 @@ ${p.descripcion}<br/>
     <br/><input type="hidden" name="id" value="${p.id}"/>
     <input type="submit" value="Enviar">
 </form>
+<a href="http://localhost:8080/visitor/newPost"></a>
 </body>
 </html>
