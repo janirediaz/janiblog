@@ -118,11 +118,18 @@ class AdminController {
         if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
         }
-        def comment = Comment.findByModerated(true);
-        if(comment.moderated(flush: true)){
-            println comment.errors.allErrors.join('\n');
-        }
+        def comments = Comment.findByModerated(true);
+        redirect(controller: 'admin', action: 'demoderateList');
 
+    }
+
+    def demoderateComment(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
+        def comment = Comment.get(params.id);
+        comment.moderated = false;
+        redirect(controller: 'admin', action:'demoderateList');
     }
 
 
