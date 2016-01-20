@@ -6,10 +6,11 @@
 
 <body>
 
-<g:each in="${p.comentarios}" var="comment">
-    <a href="http://localhost:8080/admin/demoderateComment?id=${comment.id}">Desmoderar comentario</a>
-    <g:if test="${comment.moderated}">
-        ${comment.contenido}<br/>
+<g:each in="${comments}" var="comments">
+
+    <g:if test="${comments.moderated}">
+        ${comments.contenido}<br/>
+        <a href="http://localhost:8080/admin/demoderateComment?id=${comments.id}">Desmoderar comentario</a>
     </g:if>
 
 </g:each>

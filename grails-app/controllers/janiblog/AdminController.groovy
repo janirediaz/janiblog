@@ -119,7 +119,7 @@ class AdminController {
             redirect(controller: 'admin', action: 'login');
         }
         def comments = Comment.findByModerated(true);
-        redirect(controller: 'admin', action: 'demoderateList');
+        render(view: 'demoderateList');
 
     }
 
@@ -129,6 +129,9 @@ class AdminController {
         }
         def comment = Comment.get(params.id);
         comment.moderated = false;
+        if(comment.save(flush: true)){
+            println comment.errors.allErrors.join('\n')
+        }
         redirect(controller: 'admin', action:'demoderateList');
     }
 
