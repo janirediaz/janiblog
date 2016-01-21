@@ -118,8 +118,9 @@ class AdminController {
         if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
         }
-        def comments = Comment.findByModerated(true);
-        render(view: 'demoderateList');
+        def listaComments = Comment.findAllByModerated(true);
+
+        [listaComments:listaComments];
 
     }
 
