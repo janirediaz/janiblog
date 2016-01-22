@@ -101,6 +101,30 @@ class AdminController {
         if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
         }
+
+        def countComments = Comment.countByModerated(true);
+        [countComments:countComments];
+
+    }
+
+    def dashBoard2(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
+
+        def countComments = Comment.findAllByModerated(true);
+        [countComments:countComments.size()];
+
+    }
+
+    def dashBoard3(){
+        if(session['user'] == null){
+            redirect(controller: 'admin', action: 'login');
+        }
+
+        def countComments = Comment.findAllByModerated(true);
+        [countComments:countComments];
+
     }
 
     def savePost(){

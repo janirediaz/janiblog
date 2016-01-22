@@ -7,7 +7,7 @@
 
 <a href="http://localhost:8080/admin/lista">Lista de usuarios</a>
 <a href="http://localhost:8080/admin/newPost">Agregar nuevo post</a>
-<a href="http://localhost:8080/admin/demoderateList">Desmoderar comentario ${countComments}</a>
+<a href="http://localhost:8080/admin/demoderateList">Desmoderar comentario ${countComments.size()}</a>
 
 
 
