@@ -32,8 +32,20 @@ class AdminController {
         if(session['user'] == null){
             redirect(controller: 'admin', action: 'login');
         }
-        User u = new User();
-        def listaUsuarios = u.findAll();
+        def listaUsuarios;
+        if(params.campo.equals("nombre") && params.modo.equals("asc")) {
+           listaUsuarios = User.findAll([sort: "nombre", order: "asc"]);
+        }else if(params.campo.equals("nombre") && params.modo.equals("desc")){
+            listaUsuarios = User.findAll([sort: "nombre", order: "desc"]);
+        }else if(params.campo.equals("apellido") && params.modo.equals("asc")){
+            listaUsuarios = User.findAll([sort: "apellido", order: "asc"]);
+        }else if(params.campo.equals("apellido") && params.modo.equals("desc")){
+            listaUsuarios = User.findAll([sort: "apellido", order: "desc"]);
+        }else if(params.campo.equals("edad") && params.modo.equals("asc")){
+            listaUsuarios = User.findAll([sort: "edad", order: "asc"]);
+        }else if(params.campo.equals("edad") && params.modo.equals("desc")){
+            listaUsuarios = User.findAll([sort: "edad", order: "desc"]);
+        }
         [listaUsuarios:listaUsuarios];
     }
 
