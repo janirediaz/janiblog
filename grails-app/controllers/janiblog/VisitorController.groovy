@@ -40,5 +40,10 @@ class VisitorController {
         redirect(controller: 'visitor', action: 'detallePost', params: [id: params.id]);
     }
 
+    def getDetailUserAjax(){
+        def user = User.get(14);
+        [user: user];
+    }
+
 
 }

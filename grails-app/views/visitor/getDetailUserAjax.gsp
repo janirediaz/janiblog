@@ -1,0 +1,1 @@
+Usuario: ${user.nombre} ${user.apellido} Edad: ${user.edad}
