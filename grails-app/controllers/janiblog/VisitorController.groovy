@@ -4,7 +4,7 @@ class VisitorController {
 
     def index() {
 
-        def user = User.get(14);
+        def user = User.get(6);
 
         def pagina = 0;
         if(params.pagina == null){
@@ -18,7 +18,7 @@ class VisitorController {
         def listaTotal = Post.findAll();
 
         def listaPost = Post.findAll([max: 5, offset: (pagina -1) * 5]);
-        [listaPost : listaPost, user: user, listaTotal: listaTotal];
+        [listaPost : listaPost, user: user, listaTotal: listaTotal, pagina: pagina];
 
     }
 
@@ -41,7 +41,7 @@ class VisitorController {
     }
 
     def getDetailUserAjax(){
-        def user = User.get(14);
+        def user = User.get(6);
         [user: user];
     }
 
