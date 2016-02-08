@@ -15,11 +15,23 @@
 <form id="formulario" method="get" action="index">
     <input type="hidden" name="pagina" id="pagina">
 <label for="lista">Elige una opción</label><br/>
-<select onchange="cambioPagina(1)" id="lista" name="listaPost">
-    <option value="" selected="selected">- Selecciona una opción -</option>
-    <option value="5"> 5 </option>
-    <option value="10"> 10 </option>
-    <option value="15"> 15 </option>
+<select onchange="cambioPagina(1)" id="lista" name="numeroPosts">
+    <option value="5" <g:if test="${optionSelected == 5}">
+        selected= "selected"
+    </g:if>> 5 </option>
+    <option value="10" <g:if test="${optionSelected == 10}">
+        selected= "selected"
+    </g:if>> 10 </option>
+    <option value="15" <g:if test="${optionSelected == 15}">
+        selected= "selected"
+    </g:if>> 15 </option>
+
+    <g:if test="${optionSelected == 10}">
+
+    </g:if>
+    <g:if test="${optionSelected == 15}">
+
+    </g:if>
 </select>
 </form>
 <script>

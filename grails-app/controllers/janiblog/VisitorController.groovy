@@ -16,9 +16,10 @@ class VisitorController {
         }
 
         def listaTotal = Post.findAll();
+        def optionSelected = params.numeroPosts;
 
-        def listaPost = Post.findAll([max: 5, offset: (pagina -1) * 5]);
-        [listaPost : listaPost, user: user, listaTotal: listaTotal, pagina: pagina];
+        def listaPost = Post.findAll([max: params.numeroPosts, offset: (pagina -1) * (Integer.parseInt(params.numeroPosts))]);
+        [listaPost : listaPost, user: user, listaTotal: listaTotal, pagina: pagina, optionSelected: optionSelected];
 
     }
 
